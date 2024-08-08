@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from views import router as ocr_router
-
+import os
 app = FastAPI()
 
 
