@@ -7,23 +7,46 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background: url('/static/img/background.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #333;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: -1;
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.7); /* More transparent background */
     color: #fff;
-    padding: 10px 0;
+    padding: 40px 0; /* Increase padding for more space */
     text-align: center;
+    border-bottom: 2px solid #4CAF50;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a subtle text shadow */
 }
 
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    padding: 0;
+    margin-top: 20px;
+    gap: 20px;
 }
 
 nav ul li {
@@ -33,78 +56,66 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    padding: 5px 10px;
-    transition: background-color 0.3s;
+    padding: 12px 24px;
+    background-color: rgba(76, 175, 80, 0.9);
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 nav ul li a:hover {
-    background-color: #45a049;
+    background-color: rgba(69, 160, 73, 0.9);
+    transform: scale(1.05);
 }
 
 .container {
     display: flex;
     justify-content: space-around;
-    padding: 20px;
-    margin-top: 20px;
+    padding: 40px;
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-#upload-section, #result-section {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 45%;
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #4CAF50;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .form-group input[type="file"] {
     width: 100%;
+    padding: 10px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
 }
 
 .btn {
     display: inline-block;
     background-color: #4CAF50;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover {
     background-color: #45a049;
+    transform: scale(1.05);
 }
 
-#result-section {
-    word-wrap: break-word;
-    background-color: #f9f9f9;
-}
-
-h1, h2 {
-    margin-bottom: 20px;
-    font-weight: normal;
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #upload-section, #result-section {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
 .result-table {
     width: 100%;
     border-collapse: collapse;
@@ -113,7 +124,7 @@ h1, h2 {
 
 .result-table th, .result-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
 }
 
