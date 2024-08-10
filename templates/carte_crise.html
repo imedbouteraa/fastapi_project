@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Crise OCR</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Carte Crise OCR</h1>
+    </header>
+
+    <main class="container">
+        <section id="upload-section">
+            <h2>Upload Your Document</h2>
+            <form id="ocr-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="image">Choose an image file:</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-upload"></i> Submit
+                </button>
+            </form>
+        </section>
+
+        <section id="result-section">
+            <h2>OCR Results</h2>
+            <div id="loading" style="display:none;">
+                <img src="/static/img/loading-spinner.gif" alt="Loading..." />
+            </div>
+            <div id="result"></div>
+        </section>
+    </main>
+
+    <script src="/static/js/carte_crise.js"></script>
+</body>
+</html>
