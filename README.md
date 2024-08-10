@@ -1,6 +1,4 @@
-Certainly! Below is a template for a `README.md` file for your FastAPI OCR project. This README file will provide clear instructions and information about your project for anyone who views your GitHub repository.
 
-```markdown
 # FastAPI OCR API
 
 This project is a FastAPI-based application that provides Optical Character Recognition (OCR) functionality for processing images of Driver's Licenses, Carte Grises, and ID Cards. The application exposes three API endpoints that can be used to upload images and extract relevant information.
