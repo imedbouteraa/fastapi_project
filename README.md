@@ -185,20 +185,8 @@ Contributions are welcome! Please create an issue or a pull request for any enha
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-```
 
-### Summary of Sections:
-- **Project Structure**: Outlines the files and directories in the project.
-- **Features**: Describes what the project does.
-- **Installation**: Step-by-step instructions on setting up the project locally.
-- **Usage**: Instructions on running the application locally and using Docker.
-- **Deployment**: Guides for deploying the project on Render and Heroku.
-- **API Endpoints**: Details the available API endpoints and their usage.
-- **Integrating with a Mobile App**: Sample code for integrating the API with a mobile app.
-- **Contributing**: Encourages contributions and explains how to contribute.
-- **License**: States the project’s license.
 
-Feel free to customize any sections or add more details specific to your project.
 
 
 Happy coding!
