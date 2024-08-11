@@ -3,7 +3,10 @@ document.getElementById('ocr-form').onsubmit = async function(e) {
     document.getElementById('loading').style.display = 'block';
 
     const formData = new FormData();
-    formData.append("image", document.getElementById('image').files[0]);
+    const fileInput = document.getElementById('image');
+    console.log('Selected file:', fileInput.files[0]);
+
+    formData.append("image", fileInput.files[0]);
 
     try {
         const response = await fetch('/api/ocr/carte_crise/', {
@@ -11,8 +14,14 @@ document.getElementById('ocr-form').onsubmit = async function(e) {
             body: formData
         });
 
-        const result = await response.json();
-        document.getElementById('result').innerHTML = formatResultAsTable(result);
+        if (response.ok) {
+            const result = await response.json();
+            console.log('API response:', result);
+            document.getElementById('result').innerHTML = formatResultAsTable(result);
+        } else {
+            console.error('Server error:', response.statusText);
+            alert('There was an error processing your request. Please try again.');
+        }
     } catch (error) {
         console.error("There was an error processing the image!", error);
     } finally {

@@ -128,15 +128,3 @@ h2 {
     text-align: left;
 }
 
-.result-table th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.result-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.result-table tr:hover {
-    background-color: #ddd;
-}
