@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from views import router as ocr_router
-
+import os
 app = FastAPI()
 
 app.add_middleware(
