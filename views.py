@@ -21,7 +21,10 @@ async def ocr_driver_license(image: UploadFile = File(...)):
         for chunk in iter(lambda: image.file.read(1024 * 1024), b""):
             destination.write(chunk)
 
-    ocr_module = PaddleOCR(lang='fr')
+    ocr_module = PaddleOCR(
+        lang='fr',
+        use_angle_cls=True,  # Enable angle classifier
+    )
     result = ocr_module.ocr(image_path)
 
     text = [line[1][0] for line in result[0]]
@@ -44,7 +47,10 @@ async def ocr_driver_license(image: UploadFile = File(...)):
 
 #2api
 def process_image(image_path: str, lang: str = 'fr'):
-    ocr_module = PaddleOCR(lang=lang)
+    ocr_module = PaddleOCR(
+        lang='fr',
+        use_angle_cls=True,  # Enable angle classifier
+    )
     result = ocr_module.ocr(image_path)
 
     text = [line[1][0] for line in result[0]]
@@ -82,7 +88,10 @@ async def ocr_carte_crise(image: UploadFile = File(...)):
 
 #3api
 def process_image_idcard(image_path: str, lang: str = 'fr'):
-    ocr_module = PaddleOCR(lang=lang)
+    ocr_module = PaddleOCR(
+        lang='fr',
+        use_angle_cls=True,  # Enable angle classifier
+    )
     result = ocr_module.ocr(image_path)
 
     text = [line[1][0] for line in result[0]]
