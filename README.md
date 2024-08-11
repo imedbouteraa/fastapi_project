@@ -1,154 +1,190 @@
 
-# OCR API with FastAPI
+# FastAPI OCR API
 
-This project is an OCR (Optical Character Recognition) API built with FastAPI. It processes images of driver's licenses,carte crise,french id card, extracting key information such as the holder's name, date of birth, license number, and more. The API can be integrated with mobile apps or other services.
+This project is a FastAPI-based application that provides Optical Character Recognition (OCR) functionality for processing images of Driver's Licenses, Carte Grises, and ID Cards. The application exposes three API endpoints that can be used to upload images and extract relevant information.
 
-## Features
+## Table of Contents
 
-- **Driver's License OCR**: Extract information from images of driver's licenses.
-- **Custom Image OCR**: Process custom images to extract text data.
-- **FastAPI**: Leverages FastAPI for high performance and ease of use.
-- **Deployed on Heroku**: Easily deployable on Heroku or other cloud services.
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [API Endpoints](#api-endpoints)
+- [Integrating with a Mobile App](#integrating-with-a-mobile-app)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Project Structure
 
-
-ocr_fastapi/
+```
+.
+├── media/
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── driver_license.js
+│   │   ├── carte_crise.js
+│   │   └── idcard.js
+│   └── img/
+│       └── loading-spinner.gif
+├── templates/
+│   ├── index.html
+│   ├── driver_license.html
+│   ├── carte_crise.html
+│   └── idcard.html
+├── venv/
+├── Dockerfile
 ├── main.py
-├── serializers.py
-├── views.py
-├── Procfile
+├── README.md
 ├── requirements.txt
-├── runtime.txt (optional)
-└── media/
+├── serializers.py
+└── views.py
+```
 
+## Features
 
-## Getting Started
+- **OCR for Driver's License**: Extracts information such as name, date of birth, license number, etc.
+- **OCR for Carte Grise**: Extracts vehicle information including registration number, VIN, and more.
+- **OCR for ID Card**: Extracts personal information like name, nationality, ID number, etc.
+- **User Interface**: A basic web interface using HTML, CSS, and JavaScript to interact with the API.
+- **Docker Support**: Deployable via Docker for consistent environments.
+
+## Installation
 
 ### Prerequisites
 
-- Python 3.8+
-- Git
-- Heroku CLI (for deployment)
+- **Python 3.9+**
+- **pip**
+- **Git**
 
-### Installation
+### Clone the Repository
 
-1. **Clone the repository**:
+```bash
+git clone https://github.com/yourusername/your-repo-name.git
+cd your-repo-name
+```
 
-   git clone https://github.com/imedbouteraa/fastapi_project.git
-   cd your-repo-name
-   
+### Create a Virtual Environment
 
-2. **Create a virtual environment**:
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
 
+### Install Dependencies
 
-   python -m venv venv
-   
+```bash
+pip install -r requirements.txt
+```
 
-3. **Activate the virtual environment**:
+## Usage
 
-   - On Windows:
+### Running the Application Locally
 
-  
-     venv\Scripts\activate
-     
+```bash
+uvicorn main:app --reload
+```
 
-   - On macOS/Linux:
+- Access the application in your browser at `http://127.0.0.1:8000`.
+- Navigate to the different OCR pages to test the OCR functionality.
 
-    
-     source venv/bin/activate
-    
+### Using Docker
 
-4. **Install the dependencies**:
+1. **Build the Docker Image**:
 
-   pip install -r requirements.txt
-   
+   ```bash
+   docker build -t fastapi-ocr .
+   ```
 
-### Running the Application
+2. **Run the Docker Container**:
 
-1. **Start the FastAPI server**:
+   ```bash
+   docker run -d -p 8000:8000 fastapi-ocr
+   ```
 
-   
-   uvicorn main:app --reload
-   
+- Access the application at `http://localhost:8000`.
 
-2. **Access the API documentation**:
+## Deployment
 
-   Open your web browser and go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to see the interactive API documentation provided by Swagger UI.
+### Deploying on Render
 
-### API Endpoints
+1. **Connect Your Repository**: Link your GitHub repository to Render.
+2. **Configure the Service**:
+   - Set the build command to `pip install -r requirements.txt`.
+   - Set the start command to `uvicorn main:app --host 0.0.0.0 --port $PORT`.
+3. **Deploy**: Render will automatically build and deploy your application.
 
-- **GET /**: Welcome message.
-- **POST /api/ocr/driver_license/**: Upload an image of a driver's license to extract information.
-- **POST /api/ocr/custom/**: Upload a custom image to extract text data.
+### Deploying on Heroku
 
-### Example Request
-
-**Endpoint**: `/api/ocr/driver_license/`
-
-**Method**: `POST`
-
-**Body**: `form-data`
-
-- Key: `image`
-- Type: `File`
-- Value: Select an image file of a driver's license
-
-### Deployment
-
-To deploy this application on Heroku, follow these steps:
-
-1. **Create a `Procfile`**:
-
-  
-   echo "web: uvicorn main:app --host 0.0.0.0 --port \$PORT" > Procfile
-   
-
-2. **Create a `requirements.txt`**:
-
-  
-   pip freeze > requirements.txt
-   
-
-3. **Create a `runtime.txt` (Optional)**:
-
-  
-   echo "python-3.8.12" > runtime.txt
- 
-
-4. **Initialize Git**:
-
-   
-   git init
-   git add .
-   git commit -m "Initial commit"
-  
-
-5. **Create a Heroku App**:
-
-  
+1. **Create a Heroku App**:
+   ```bash
    heroku create your-app-name
- 
+   ```
+2. **Push to Heroku**:
+   ```bash
+   git push heroku master
+   ```
+3. **Access Your Application**: Heroku will provide a public URL.
 
-6. **Deploy to Heroku**:
+## API Endpoints
 
-  
-   git push heroku main
-   
+### 1. **Driver License OCR**
+   - **Endpoint**: `/api/ocr/driver_license/`
+   - **Method**: `POST`
+   - **Request Body**: `image` (file)
+   - **Response**: JSON with extracted information.
 
-7. **Open Your App**:
+### 2. **Carte Grise OCR**
+   - **Endpoint**: `/api/ocr/carte_crise/`
+   - **Method**: `POST`
+   - **Request Body**: `image` (file)
+   - **Response**: JSON with extracted information.
 
-  
-   heroku open
-  
+### 3. **ID Card OCR**
+   - **Endpoint**: `/api/ocr/idcard/`
+   - **Method**: `POST`
+   - **Request Body**: `image` (file)
+   - **Response**: JSON with extracted information.
 
-### Contributing
+## Integrating with a Mobile App
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+You can integrate this API with any mobile app by making HTTP POST requests to the respective endpoints. Convert the images to base64 and send them in the request body.
 
-### License
+### Example with Flutter:
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+```dart
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+Future<void> fetchDriverLicenseData() async {
+  final response = await http.post(
+    Uri.parse('https://your-app-name.onrender.com/api/ocr/driver_license/'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'image': base64Encode(yourImageBytes), // Convert image to base64 string
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    print(data);
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
+```
+
+## Contributing
+
+Contributions are welcome! Please create an issue or a pull request for any enhancements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 
 
